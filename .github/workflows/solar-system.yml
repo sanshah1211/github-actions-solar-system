@@ -22,7 +22,7 @@ jobs:
         - name: Cache NPM Dependencies
           uses: actions/cache@v4
           with:
-            path: ./npm
+            path: ~/.npm
             key: '${{ runner.os }}-node-modules-${{ hashFiles(''package-lock.json'') }}'
     
         - name: Install Dependencies
