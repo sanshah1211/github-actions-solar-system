@@ -37,6 +37,7 @@ jobs:
           with:
             name: Mocha-Test-Result
             path: test-results.xml
+
     
     code-coverage:
       runs-on: ubuntu-latest
@@ -92,3 +93,9 @@ jobs:
             echo "kubectl returned $?"
             kubectl -n default get pod
             sleep 10
+    
+    integration-testing:
+      needs: dev-deploy
+      uses: ./.github/workflows/reusable-workflow.yml
+      with:
+        ingress-url: ${{ needs.dev-deploy.outputs.APP_INGRESS_URL }}
